@@ -1,0 +1,346 @@
+{{> header }}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Request Gas
+                <small>Request Gas Listing</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">new Request Gas</li>
+            </ol>
+            {{#if messages.success }}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-check"></i>{{ messages.success }}
+                </div>
+
+            {{/if}}
+            {{#if messages.error }}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-close"></i> {{ messages.error }}
+                </div>
+            {{/if}}
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box  box-danger">
+                        <div class="box-header">
+                            <h3 class="box-title"></h3>
+                            <!--<span class="pull-right"><button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#handover"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Coupon</button> </span>-->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="5">S/N</th>
+                                    <th>Username</th>
+                                    <th>Vender Name</th>
+                                    <th>Registration No</th>
+                                    <th>Address</th>
+                                    <th>Amount</th>
+                                    <th>Pincode</th>
+                                    <th>Status</th>
+                                   <!-- <th  width="90">Action</th>-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each bookingList}}
+                                   <tr>
+                                       <td>{{math @index "+" 1}}</td>
+                                       <td>{{ insertby.username }}</td>
+                                       <td>{{ venderId.username }}</td>
+                                       <td>{{ registrationid }}</td>
+                                       <td>{{ address }}</td>
+                                       <td>{{ amount }}</td>
+                                       <td>{{ pincode }}</td>   
+                                       <td style="text-align: right;font-weight: bold">
+                                           
+                                           {{#compare status  1 operator="=="}}
+                                               <span class="label label-success label-small">Conform</span>
+                                           {{ else }}
+                                               <span class="label label-warning">Pending</span>
+                                           {{/compare}}
+                                       </td>
+                                      <!-- <td>
+                                           <div class="btn-group">
+                                               {{#compare deliveryBoyId null operator="=="}}
+                                                    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editCategory"  onclick="assignDeliveryBoy('{{ _id }}')">Assign Delivery Boy</button>
+                                               {{else}}
+                                                    <a href="/bookingInvoice{{_id}}" class="btn btn-danger btn-sm">View Invoice</a>
+                                               {{/compare}}
+                                               
+                                               
+                                              
+                                           </div>
+                                       </td>-->
+                                   </tr>
+                               {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+        <div class="modal fade" id="handover">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                   <form method="post" action="/sysadmin/addCoupon" autocomplete="off" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">New Coupon</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-body" id="TabletoAdd">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Coupon Name</label>
+                                        <input type="text" cols="1" required rows="1" class="form-control" name="coupon_name"  placeholder="Coupon Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Coupon Description</label>
+                                        <textarea class="form-control" required name="coupon_description" placeholder="Coupon Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Percentage</label>
+                                        <input type="text" cols="1" required rows="1" class="form-control" name="percentage"  placeholder="Percentage">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Start Date</label>
+                                        <input type="text" class="form-control date" required name="start_date" placeholder="Start Date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">End Date</label>
+                                        <input type="text" class="form-control date" required name="end_date" placeholder="End Date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Coupon Image</label>
+                                        <input type="file" required class="form-control" value="" name="image" placeholder="Coupon Image">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Status</label>
+                                    <select class="form-control" name="status">
+                                        <option value="0">Active</option>
+                                        <option value="1">Inactive</option>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <!--<button class="btn btn-info" id="addRow" type="button">Add</button>-->
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="additions" id="additions" style="display: none">
+            <div class="row">
+                <div class="col-sm-2">
+                    <select class="form-control" required name="categoryId[]" onchange="">
+                        <option value=""> -- Chagua Aina --</option>
+                        {{#each cat}}
+                            <option value="{{ _id }}">{{ name }}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <textarea type="text" cols="1" required rows="1" class="form-control" name="tangazo[]"  placeholder="Tangazo"></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control date" name="tarehe[]" placeholder="Tarehe">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control" value="" name="muhusika[]"  placeholder="Muhusika ">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                        <div class="input-group">
+                            <select class="form-control"  name="priority[]" onchange="">
+                                <option value="0">Kawaida</option>
+                                <option value="1">Sana</option>
+                                <option value="2">Sana Mno</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" id="removerow"><i class="fa fa-close"></i></button>
+                            </span>
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.content -->
+    </div>
+
+<div class="modal fade" id="CategoryDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form" action="/sysadmin/deleteCoupon" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Delete Coupon <span id="deleteCouponName"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        You're sure you want to delete <b id="couponName"></b>
+                        <input type="hidden" id="couponId" name="couponId">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Remove</button>
+                    <button type="submit" class="btn btn-primary">YES</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="editCategory">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form autocomplete="off" action="/sysadmin/assignDeliveryBoy" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Assign Delivery Boy</h4>
+                </div>
+                <div class="modal-body">
+                        <div class="box-body" id="TabletoAdd">
+                            <div class="row">
+                                <div class="">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Select Vender</label>
+                                    <select class="form-control" name="deliveryBoy">
+                                        <option value="">Select Delivery</option>
+                                       {{#each deliveryBoyList}}
+                                            <option value="{{ _id }}">{{ username }}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <input type="hidden" name="assign_booking_id" id="assign_booking_id">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="application/javascript">
+    $(document).ready(function(){
+        $('.mobile_number').keyup(function (event) {
+            // skip for arrow keys
+            if (event.which >= 37 && event.which <= 40) return;
+            // format number
+            $(this).val(function (index, value) {
+                return value.replace(/\D/g, "");
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#TabletoAdd").on('click','#removerow',function(){
+            $(this).parent().parent().parent().parent().remove();
+        });
+        $("#addRow").click(function(){
+            var response = $('#additions').html();
+            $('#TabletoAdd').append(response).slideDown('slow');
+            $(".date").datepicker({
+                maxDate:0,
+                dateFormat: "yy-mm-dd",
+            }).datepicker("setDate", new Date());
+        });
+        $('.sidebar-menu').tree()
+
+        $(".date").datepicker({
+            maxDate:0,
+            dateFormat: "yy-mm-dd",
+        }).datepicker("setDate", new Date());
+    });
+
+    function editSubAdmin(argument) {
+       // alert(argument)
+        $.ajax({
+            url: "/sysadmin/ajaxEditCoupon",
+            data : { couponid : argument },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#id").val(response._id);
+                $("#coupon_name").val(response.coupon_name);
+                $("#coupon_description").val(response.coupon_description);
+                $("#percentage").val(response.percentage);
+                $("#start_date").val(response.start_date);
+                $("#end_date").val(response.end_date);
+                $("#status").val(response.status);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#id").val(" ");
+                $("#coupon_name").val(" ");
+                $("#coupon_description").val(" ");
+                $("#percentage").val(" ");
+                $("#start_date").val(" ");
+                $("#end_date").val(" ");
+                $("#status").val(" ");                                                                                     
+            }
+        });
+    }
+
+    function DeleteCoupon(argument,argument2){
+        jQuery("#deleteCouponName").html(argument);
+        jQuery("#couponName").html(argument);
+        jQuery("#couponId").val(argument2);
+    }
+
+    function assignDeliveryBoy(bookingId){
+        $('#assign_booking_id').val(bookingId);
+    }
+
+</script>
+{{> footer }}

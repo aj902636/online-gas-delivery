@@ -1,0 +1,215 @@
+{{> sysAdminHeader }}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Cylinder Type
+            <small>cylinder type</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Cylinder Type</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                            <span class="box-title">
+                            {{#if messages.success }}
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="icon fa fa-check"></i>{{ messages.success }}
+                                </div>
+
+                            {{/if}}
+                                {{#if messages.error }}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <i class="icon fa fa-close"></i> {{ messages.error }}
+                                    </div>
+                                {{/if}}
+                            </span>
+                        <span class="pull-right">
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#users" onclick="AutoComplete()"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Cylinser Type</button>
+                        </span>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 4%">S/N</th>
+                                <th>Added By</th>
+                                <th>Cylinder Weight</th>
+                                <th>Created</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                        {{#each cylinserType}}
+                            <tr>
+                                <td>{{ math @index "+" 1}}</td>
+                                <td>{{ insertby.username }}</td>
+                                <td>{{ cylinderWeight }}</td>
+                                <td>{{formatDate createdAt "DD-MM-YYYY HH:mm"}}</td>
+                                <td>
+                                {{#if status }}
+                                    <span class="label label-success">Active</span>
+                                {{ else }}
+                                    <span class="label label-danger">Inactive</span>
+                                {{/if }}
+                                </td>
+                                <!--<td></td>-->
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editUsers"  onclick="editMtumishi('{{ _id }}')"><i class="fa fa-pencil"></i>Edit</button>
+                                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" onclick="DeleteSubAdmin('{{ username }}','{{ _id }}')" data-target="#UserDelete"><i class="fa fa-trash"></i> delete </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+<div class="modal fade" id="users">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form autocomplete="off" action="/sysadmin/addCylinderType" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cylinder Type</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Cylinder Weight</label>
+                        <input type="text" class="form-control" autocomplete="off" value="" required name="cylinderweight"  placeholder="Enter Cylinder Weight">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="editUsers">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form autocomplete="off" action="/sysadmin/editSubAdmin" enctype="multipart/form-data" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sub-Admin</h4>
+            </div>
+            <div class="modal-body">
+                 <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" autocomplete="off" value="" required name="username" id="username" placeholder="Enter Username">
+                        <input type="hidden" name="editId" id="editId">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Phone number</label>
+                        <input type="number" maxlength="10" class="form-control" required name="phonenumber" id="phonenumber" placeholder="Phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" required name="email" id="email" placeholder="Email">
+                    </div> 
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Profile Image</label>
+                        <input type="file" class="form-control" name="file" id="file" placeholder="File">
+                    </div>
+                    <!--<div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" autocomplete="off" required value="" name="password" id="password" placeholder="Password">
+                    </div>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="UserDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form" action="/sysadmin/cylinderTypeDelete" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Delete Cylinder Type <span id="subadminheading"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Do you want to delete <b id="deleteusername"></b>
+                        <input type="hidden" id="DeleteId" name="DeleteId">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script type="application/javascript">
+    function AutoComplete(){
+        $("#username").val("");
+        $("#password").val("");
+    }
+    function editMtumishi(argument) {
+        $.ajax({
+            url: "/sysadmin/ajaxEditSubAdmin",
+            data : { userId : argument },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+                $("#username").val(response.username);
+                $("#phonenumber").val(response.phoneNumber);
+                $("#email").val(response.email);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editId").val(""); //editWatumiaji
+                $("#username").val("");
+                $("#phonenumber").val("");
+                $("#email").val("");
+            }
+        });
+    }
+
+    function DeleteSubAdmin(argument,argument2){
+        jQuery("#subadminheading").html(argument);
+        jQuery("#deleteusername").html(argument);
+        jQuery("#DeleteId").val(argument2);
+    }
+</script>
+{{> sysAdminFooter }}

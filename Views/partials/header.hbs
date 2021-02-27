@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gas Delivery | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+<!--/////////////////////////////////////////////////////-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/dashboard" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>Gas Delivery</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">
+                <!--<img src="/images/logo.png">-->
+                <b>Online Gas Delivery</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div id="google_translate_element"></div>
+            <div class="navbar-custom-menu" >
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {{#compare profileImage  '' operator="=="}}
+                                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            {{ else }}
+                                <img src="../../upload/{{profileImage}}" class="user-image" alt="User Image">
+                            {{/compare}}
+                            <span class="hidden-xs">{{ username }} </span>
+                        </a>
+                        <ul class="dropdown-menu" style="width:320px" >
+                            <!-- User image -->
+                            <li class="user-header">
+                               
+                                {{#compare profileImage  '' operator="=="}}
+                                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                {{ else }}
+                                    <img src="../../upload/{{profileImage}}" class="img-circle" alt="User Image">
+                                {{/compare}}
+                                <p>
+                                    {{ username }}
+                                    <!--<small>Member since Nov. 2012</small>-->
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                     <a href="/profile" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-left" style="margin-left: 8px;">
+                                    <a href="/changePassword" class="btn btn-default btn-flat">Change Password</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                                
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{ username }}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- search form -->
+
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">MAIN NAVIGATION</li>
+                <li>
+                    <a href="/dashboard">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/bookingAmount">
+                        <i class="fa fa-money"></i> <span>Manage Booking Amount</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/upcomingBooking">
+                        <i class="fa fa-book"></i>
+                        <span>Upcoming Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/booking">
+                        <i class="fa fa-tags"></i>
+                        <span>Recent Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/allBooking">
+                        <i class="fa fa-tags"></i>
+                        <span>All Booking</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>

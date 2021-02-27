@@ -1,0 +1,105 @@
+{{> sysAdminHeader }}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Profile
+                <small>Profile</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">profile</li>
+            </ol>
+            {{#if messages.success }}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-check"></i>{{ messages.success }}
+                </div>
+
+            {{/if}}
+            {{#if messages.error }}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-close"></i> {{ messages.error }}
+                </div>
+            {{/if}}
+        </section>
+                <!-- Main content -->
+        <section class="content">
+            
+                <div class="tab-pane" id="settings">
+                    <form action="/sysadmin/profile" method="post" class="form-horizontal" enctype="multipart/form-data">
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-4 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                          <input type="text" required value="{{userData.username}}" name="username" class="form-control" id="inputName" placeholder="User name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="email" required value="{{userData.email}}" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-4 col-form-label">Phone Number</label>
+                        <div class="col-sm-10">
+                          <input type="text" required value="{{userData.phoneNumber}}" name="phoneNumber" class="form-control" id="inputName2" placeholder="Phone Number">
+                        </div>
+                      </div>
+                      <!--<div class="form-group row">
+                        <label for="inputExperience" class="col-sm-4 col-form-label">Company Details</label>
+                        <div class="col-sm-10">
+                          <textarea required class="form-control"  name="companyDetails" id="inputExperience" placeholder="Company Details">{{userData.companyDetails}}</textarea>
+                        </div>
+                      </div>-->
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-4 col-form-label">Profile Image</label>
+                        <div class="col-sm-10">
+                          <input type="file"  value="" name="profile_image" class="form-control" id="inputName2" placeholder="Profile Image">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-6">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+            
+        </section>
+        <!-- /.content -->
+    </div>
+
+<!-- /.modal -->
+<script type="application/javascript">
+    function editUser(argument) {
+        $.ajax({
+            url: "/sysadmin/ajaxEditUser",
+            data : { categoryId : argument },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editcategory").val(response._id);
+                $("#editprojectname").val(response.name);
+                $("#editdescriptions").val(response.descriptions);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editcategory").val("");
+                $("#editprojectname").val("");
+                $("#editdescriptions").val("");
+            }
+        });
+    }
+
+    function DeleteCategory(argument,argument2){
+        jQuery("#jinalamuumini").html(argument);
+        jQuery("#nameyaMuumini").html(argument);
+        jQuery("#muuminiId").val(argument2);
+    }
+</script>
+
+{{> sysAdminFooter }}

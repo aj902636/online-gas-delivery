@@ -1,0 +1,591 @@
+{{> sysAdminHeader }}
+<!-- Content Wrapper. Contains page content -->
+<style type="text/css">
+    input[type=checkbox]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(1); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        margin: 15px !important;
+        padding: 5px;
+    }
+    .activeth {
+        -webkit-transform: rotate(270deg); /* Safari and Chrome */
+        -moz-transform: rotate(270deg);   /* Firefox */
+        -ms-transform: rotate(270deg);   /* IE 9 */
+        -o-transform: rotate(270deg);   /* Opera */
+        transform: rotate(270deg);
+    }
+
+    .activeth{
+        width: 55px;
+        height: 100px !important;
+        font-family: "Times New Roman";
+    }
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #696969;
+    }
+
+</style>
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            RESPONSIBILITIES
+            <small>Responsibilities of system sub Admin </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Responsibilities</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <span class="box-title">
+                            {{#if messages.success }}
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="icon fa fa-check"></i>{{ messages.success }}
+                                </div>
+                            {{/if}}
+                            {{#if messages.error }}
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="icon fa fa-close"></i> {{ messages.error }}
+                                </div>
+                            {{/if}}
+                        </span>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="" class="table-responsive">
+                            <thead>
+                            <tr>
+                                <th class="activeth" style="width: 4px;margin: 5px">S/N</th>
+                                <th></th>
+                                <th class="activeth">Dashboard</th>
+                               
+                               <!-- <th class="activeth">Ripoti Jengo</th>
+                                <th class="activeth">Ripoti Uwakili</th>
+                                <th class="activeth">Ripoti Elimu</th>-->
+                                
+                                
+                                <th class="activeth">Sub Admin</th>
+                                <th class="activeth">Manage User</th>
+                                <th class="activeth">Manage Vendor</th>
+                                <th class="activeth">Coupon</th>
+                                <th class="activeth">Request Gas</th>
+
+                                <th class="activeth">Select All</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each subAdmin}}
+                                <tr>
+                                    <td  style="width: 4px;margin: 5px">{{ math @index "+" 1}}</td>
+                                    <td  style="font-weight: bold"> {{username}}</td>
+                                    <td><div class="form-group">
+                                        <label>
+                                            <input
+                                                {{#compare modules.dashboard true operator="=="}} checked {{ else }}  {{/compare}}
+                                                    id="dashboard{{ math @index "+" 1}}" onclick="dashboardClick('{{_id}}','dashboard{{ math @index "+" 1}}','dashboard')" name="dashboard{{ math @index "+" 1}}" type="checkbox">
+                                        </label>
+                                    </div></td>
+                                    <td><div class="form-group">
+                                        <label>
+                                            <input
+                                              {{modules.subAdmin}}  {{#compare modules.subAdmin true operator="=="}} checked {{ else }}  {{/compare}}
+                                                    id="subAdmin{{ math @index "+" 1}}" onclick="subAdminClick('{{ _id }}','subAdmin{{ math @index "+" 1}}')" name="subAdmin{{ math @index "+" 1}}" type="checkbox">
+                                        </label>
+                                    </div></td>
+                                    <td><div class="form-group">
+                                        <label>
+                                            <input
+                                                {{#compare modules.user true operator="=="}} checked {{ else }}  {{/compare}}
+                                                    id="user{{ math @index "+" 1}}" onclick="userClick('{{ _id }}','user{{ math @index "+" 1}}')" name="user{{ math @index "+" 1}}" type="checkbox">
+                                        </label>
+                                    </div></td>
+                                    <td><div class="form-group">
+                                        <label>
+                                            <input
+                                                {{#compare modules.vendor true operator="=="}} checked {{ else }}  {{/compare}}
+                                                    id="vendor{{ math @index "+" 1}}" onclick="vendorClick('{{ _id }}','vendor{{ math @index "+" 1}}')" name="vendor{{ math @index "+" 1}}" type="checkbox">
+                                        </label>
+                                    </div></td>
+                                    <td><div class="form-group">
+                                        <label>
+                                            <input
+                                                {{#compare modules.coupon true operator="=="}} checked {{ else }}  {{/compare}}
+                                                    id="coupon{{ math @index "+" 1}}" onclick="couponClick('{{ _id }}','coupon{{ math @index "+" 1}}')" name="coupon{{ math @index "+" 1}}" type="checkbox">
+                                        </label>
+                                    </div></td>
+                                     <td><div class="form-group">
+                                        <label>
+                                            <input
+                                                {{#compare modules.requestgas true operator="=="}} checked {{ else }}  {{/compare}}
+                                                    id="requestgas{{ math @index "+" 1}}" onclick="requestGasClick('{{ _id }}','requestgas{{ math @index "+" 1}}')" name="requestgas{{ math @index "+" 1}}" type="checkbox">
+                                        </label>
+                                    </div></td>
+                                    
+                                    <td><div class="form-group">
+                                        <label>
+                                            <input type="checkbox"  id="toggle" onclick="selectcatalog(this.checked,{{ math @index "+" 1}})" >
+                                        </label>
+                                    </div></td>
+                                </tr>
+                           {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+<script type="application/javascript">
+
+    function AutoComplete(){
+        $("#username").val("");
+        $("#password").val("");
+    }
+    function dashboardClick(argument,argument5,moduleName) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/dashboardClick",
+            data : { role : argument,dashboard : dash, module : moduleName },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function userClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/userClick",
+            data : { role : argument,user : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function vendorClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/vendorClick",
+            data : { role : argument,vendor : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function couponClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/couponClick",
+            data : { role : argument,coupon : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+
+    //Pendings
+    function requestGasClick(argument,argument5) {
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/requestGasClick",
+            data : { role : argument,requestgas : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function broadcastClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/broadcastClick",
+            data : { role : argument,broadcast : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+
+    function subAdminClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/subAdminClick",
+            data : { role : argument,subAdmin : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+
+
+    function reportsClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/sysadmin/reportsClick",
+            data : { role : argument,reports : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function RatibaClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/RatibaClick",
+            data : { role : argument,ratiba : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+
+    //Pendings
+    function RipotiJengoClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/RipotiJengoClick",
+            data : { role : argument,ripotijengo : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function RipotiUwakiliClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/RipotiUwakiliClick",
+            data : { role : argument,ripotiuwakili : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function RipotiElimuClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/RipotiElimuClick",
+            data : { role : argument,ripotielimu : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function MaoniClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/MaoniClick",
+            data : { role : argument,maoni : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function MaudhurioClick(argument,argument5) {
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/MaudhurioClick",
+            data : { role : argument,maudhurio : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    //Pendings
+    function WauminiClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/WauminiClick",
+            data : { role : argument,waumini : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function WatumiajiClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/WatumiajiClick",
+            data : { role : argument,watumiaji : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function MajukumuClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/MajukumuClick",
+            data : { role : argument,majukumu : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function AinaMatangazoClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/AinaMatangazoClick",
+            data : { role : argument,ainamatangazo : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function AinaHarambeeClick(argument,argument5) {
+
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/AinaHarambeeClick",
+            data : { role : argument,ainaharambee : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+    function AinaWatuamiajiClick(argument,argument5) {
+        if($('#'+ argument5).is(':checked')){
+            var dash = true; }
+        else{
+            var dash = false; }
+        $.ajax({
+            url: "/AinaWatuamiajiClick",
+            data : { role : argument,ainawatumiaji : dash },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editId").val(response._id); //editWatumiaji
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editfirstname").val("");
+            }
+        });
+    }
+
+
+    function DeleteMtumiaji(argument,argument2){
+        $("#jinalamuumini").html(argument);
+        $("#nameyaMuumini").html(argument);
+        $("#muuminiId").val(argument2);
+    }
+    function selectall() {
+        $('input[id=toggle]').trigger('click');
+//        alert("Woyooooo");
+    }
+    function selectcatalog(status,argument) {
+        $('input[id=dashboard' + argument + ']').trigger('click');
+        $('input[id=subAdmin' + argument + ']').trigger('click');
+        $('input[id=user' + argument + ']').trigger('click');
+        $('input[id=vendor' + argument + ']').trigger('click');
+        $('input[id=coupon' + argument + ']').trigger('click');
+        $('input[id=requestgas' + argument + ']').trigger('click');
+        $('input[id=broadcast' + argument + ']').trigger('click');
+        $('input[id=reports' + argument + ']').trigger('click');
+    }
+
+</script>
+{{> sysAdminFooter }}

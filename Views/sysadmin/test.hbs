@@ -1,0 +1,446 @@
+{{> sysAdminHeader }}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard ajay
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>{{ formatCurrency jengomonth  }}</h3>
+
+                            <p>JENGO</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-home"></i>
+                        </div>
+                        <div class="box-footer" style="text-align: center;background-color: #00acd7">
+                            <span class="pull-left" style="margin-left: 5%;color: white">{{ formatCurrency jengoTotal }}</span>
+                            <a href="/jengo"><span class="" style="color: white">More info <i class="fa fa-arrow-circle-right"></i></span></a></div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ formatCurrency montuwakili  }}</h3>
+                            <p>UWAKILI</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-android-hand"></i>
+                        </div>
+                        <!--<a href="/uwakili" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+                        <div class="box-footer" style="text-align: center;background-color: #009551">
+                            <span class="pull-left" style="margin-left: 5%;color: white">{{ formatCurrency uwakiliTotal }}</span>
+                            <a href="/jengo"><span class="" style="color: white">More info <i class="fa fa-arrow-circle-right"></i></span></a></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-maroon-active">
+                        <div class="inner">
+                            <h3>{{ formatCurrency montelimu  }}</h3>
+
+                            <p>ELIMU</p>
+                        </div>
+                        <div class="icon">
+                            <i class="glyphicon glyphicon-education"></i>
+                        </div>
+                        <!--<a href="/elimu" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+                        <div class="box-footer" style="text-align: center;background-color: #b51651">
+                            <span class="pull-left" style="margin-left: 5%;color: white">{{ formatCurrency elimuTotal }}</span>
+                            <a href="/elimu"><span class="" style="color: white">More info <i class="fa fa-arrow-circle-right"></i></span></a></div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{  waumini }}</h3>
+
+                            <p>WAUMINI</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-stalker"></i>
+                        </div>
+                        <!--<a href="/waumini" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+                        <div class="box-footer" style="text-align: center;background-color: #da8c10">
+                            <span class="pull-left" style="margin-left: 5%;color: white"></span>
+                            <a href="/waumini"><span class="" style="color: white">More info <i class="fa fa-arrow-circle-right"></i></span></a></div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-10 connectedSortable">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="nav-tabs-custom">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3 class="box-title">Makusanyo Ya mwaka Mzima </h3>
+
+                                <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+                                    <div class="btn-group" data-toggle="btn-toggle">
+                                    <!--<button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>-->
+                                    <!--<button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>-->
+                                </div>
+                                </div>
+                            </div>
+                            <div class="box-body chat" id="chat-box">
+                                <div class="chart tab-pane active" id="jengo-chart">
+                                    <canvas id="jengobarChart" style="height:350px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-lg-2 connectedSortable">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h3 class="box-title">Funguo</h3>
+                        </div>
+                            <div class="box-body chat" id="chat-box" style="height:350px">
+                                <ul class="products-list product-list-in-box">
+                                        <li class="item">
+                                            <div class="product-img" style="height:35px;width:35px;background: #00c0ef">
+                                            </div>
+                                            <div class="product-info">
+                                                <span class="" style="font-weight:bold;font-family: 'Courier New', Courier,'Niagara Engraved',serif">
+                                                   Makusanyo ya Jengo
+                                                </span>
+                                            </div>
+                                        </li>
+                                    <li class="item">
+                                        <div class="product-img" style="height:35px;width:35px;background: #00a65a">
+                                        </div>
+                                        <div class="product-info">
+                                                <span class="" style="font-weight:bold;font-family: 'Courier New', Courier,'Niagara Engraved',serif">
+                                                     Makusanyo ya Uwakili
+                                                </span>
+                                        </div>
+                                    </li>
+                                    <li class="item">
+                                        <div class="product-img" style="height:35px;width:35px;background: #ca195a">
+                                        </div>
+                                        <div class="product-info">
+                                                <span class="" style="font-weight:bold;font-family: 'Courier New', Courier,'Niagara Engraved',serif">
+                                                     Makusanyo ya Elimu
+                                                </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div> <!-- /.chat -->
+                        <div class="box-footer text-center">
+                            <a href="/matangazo " class="uppercase">Angalia Matangazo</a>
+                        </div>
+                        <!-- /.chat -->
+                    </div>
+                </section>
+                <section class="col-lg-7 connectedSortable">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <i class="fa fa-comments-o"></i>
+
+                            <h3 class="box-title">Maoni ya waumini</h3>
+
+                            <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+                                <div class="btn-group" data-toggle="btn-toggle">
+                                    <!--<button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>-->
+                                    <!--<button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body chat" id="chat-box">
+                            <!-- chat item -->
+                            {{#each maoni}}
+                                <div class="item">
+                                    <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
+
+                                    <p class="message">
+                                        <a href="#" class="name">
+                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{formatDate createdAt "DD/MM/YY HH:mm"}}</small>
+                                            {{ muumini.firstname }} {{ muumini.secondname }}
+                                        </a>
+                                        <span style="font-weight:bold;font-family: 'Courier New', Courier,'Niagara Engraved',serif">{{ message }}</span> <br />
+                                        <span style="font-style: italic;font-family: SansSerif,sans-serif">{{ maelezo  }}</span>
+                                    </p>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="box-footer text-center">
+                            <a href="/maoni " class="uppercase">Angalia Maoni Zaidi</a>
+                        </div>
+                        <!-- /.chat -->
+                    </div>
+                </section>
+                <section class="col-lg-5 connectedSortable">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Mahudhurio ya Tarehe {{ maudhurio._id }}</h3>
+                        </div>
+                        <!-- /.box-header -->
+                            <div class="box-body">
+                            <div class="row">
+                                    <div class="chart-responsive"  style="height: 300px;">
+                                        <canvas id="pieChart" style="height:300px"></canvas>
+                                    </div>
+                            </div></div>
+                        <div class="box-footer">
+                            <table class="table table-responsive table-bordered">
+                                <tr>
+                                    <td></td>
+                                    <th>Wanaume</th>
+                                    <th>Wanawake</th>
+                                    <th>Watoto</th>
+                                </tr>
+                               {{#compare ibadayakwanza.tarehe  ibadayapili.tarehe  operator="=="}}
+                                    {{#compare ibadayakwanza.ibada  1 operator="=="}}
+                                        <tr>
+                                            <td>
+                                                <span class="" style="font-weight: bold">IBADA YA KWANZA</span>
+                                            </td>
+                                            <td><span class="label-warning label" style="font-size:15px ">{{  ibadayakwanza.wanaume }}</span></td>
+                                            <td> <span class="label-info label" style="font-size:15px ">{{  ibadayakwanza.wanawake }}</span></td>
+                                            <td><span class="label-success label" style="font-size:15px ">{{  ibadayakwanza.watoto }}</span></td>
+                                        </tr>
+                                    {{ else }}
+                                    {{/compare}}
+                                    {{#compare ibadayapili.ibada  2 operator="=="}}
+                                        <tr>
+                                            <td>
+                                                <span class="" style="font-weight: bold">IBADA YA PILI</span>
+                                            </td>
+                                            <td><span class="label-warning label" style="font-size:15px ">{{  ibadayapili.wanaume }}</span></td>
+                                            <td> <span class="label-info label" style="font-size:15px ">{{  ibadayapili.wanawake }}</span></td>
+                                            <td><span class="label-success label" style="font-size:15px ">{{  ibadayapili.watoto }}</span></td>
+                                        </tr>
+                                    {{ else }}
+                                    {{/compare}}
+                            {{ else }}
+                            {{/compare}}
+                                <tr>
+                                    <td>
+                                        <span class="" style="font-weight: bold">IBADA ZOTE</span>
+                                    </td>
+                                    <th><span class="label-warning label" style="font-size:15px ">{{  maudhurio.wanaume }}</span></th>
+                                    <th><span class="label-info label" style="font-size:15px ">{{  maudhurio.wanawake }}</span></th>
+                                    <th><span class="label-success label" style="font-size:15px ">{{  maudhurio.watoto }}</span></th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!--<div class="box box-primary">-->
+                        <!--<div class="box-header with-border">-->
+                            <!--<h3 class="box-title">Matangazo</h3>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /.box-header &ndash;&gt;-->
+                        <!--<div class="box-body">-->
+                            <!--<ul class="products-list product-list-in-box">-->
+                            <!--{{#each matangazo}}-->
+                                <!--<li class="item">-->
+                                    <!--<div class="product-img">-->
+                                        <!--<img src="dist/img/default-50x50.gif" alt="Product Image">-->
+                                    <!--</div>-->
+                                    <!--<div class="product-info">-->
+                                        <!--<a href="javascript:void(0)" class="product-title">-->
+                                            <!--{{ category.name }}-->
+                                            <!--&lt;!&ndash;<span class="label label-warning pull-right">$1800</span>&ndash;&gt;-->
+                                        <!--</a>-->
+                                        <!--<span class="product-description" style="font-weight:bold;font-family: 'Courier New', Courier,'Niagara Engraved',serif">-->
+                                            <!--{{ tagazo }}-->
+                                        <!--</span>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--{{/each}}-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /.box-body &ndash;&gt;-->
+                        <!--<div class="box-footer text-center">-->
+                            <!--<a href="/matangazo " class="uppercase">Angalia matangazo Zaidi</a>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /.box-footer &ndash;&gt;-->
+                    <!--</div>-->
+                </section>
+                <!-- right col -->
+            </div>
+            <!-- /.row (main row) -->
+
+        </section>
+    </div>
+
+<script type="application/javascript">
+    $(function () {
+        var jengo_data = [{{ collections.jan }},{{ collections.feb }},{{ collections.mar }},
+                    {{ collections.apr }},{{ collections.may }},{{ collections.jun }},
+                    {{ collections.jul }}, {{ collections.aug }},{{ collections.sep }},
+                    {{ collections.oct }},{{ collections.nov }},{{ collections.dec }}]
+
+        var elimu_data = [{{ elimu.jan }},{{ elimu.feb }},{{ elimu.mar }},
+                    {{ elimu.apr }},{{ elimu.may }},{{ elimu.jun }},
+                    {{ elimu.jul }}, {{ elimu.aug }},{{ elimu.sep }},
+                    {{ elimu.oct }},{{ elimu.nov }},{{ elimu.dec }}]
+
+        var uwakili_data = [{{ uwakili.jan }},{{ uwakili.feb }},{{ uwakili.mar }},
+                    {{ uwakili.apr }},{{ uwakili.may }},{{ uwakili.jun }},
+                    {{ uwakili.jul }}, {{ uwakili.aug }},{{ uwakili.sep }},
+                    {{ uwakili.oct }},{{ uwakili.nov }},{{ uwakili.dec }}];
+        var jengoChartData = {
+            type : 'bar',
+            labels  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+                {
+                    label               : 'Jengo Collections',
+                    fillColor           : '#00c0ef',
+                    strokeColor         : 'rgba(60,141,188,0.8)',
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : jengo_data
+                },{
+                    label               : 'Uwakili Collections',
+                    fillColor           : '#00a65a',
+                    strokeColor         : 'rgba(60,141,188,0.8)',
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : uwakili_data
+                },{
+                    label               : 'Elimu Collections',
+                    fillColor           : '#ca195a',
+                    strokeColor         : 'rgba(60,141,188,0.8)',
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : elimu_data
+                }
+            ]
+        };
+//        var uwakiliChartData = {
+//            labels  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+//            datasets: [
+//                {
+//                    label               : 'Jengo Collections',
+//                    fillColor           : '#fff',
+//                    strokeColor         : 'rgba(60,141,188,0.8)',
+//                    pointColor          : '#3b8bba',
+//                    pointStrokeColor    : 'rgba(60,141,188,1)',
+//                    pointHighlightFill  : '#fff',
+//                    pointHighlightStroke: 'rgba(60,141,188,1)',
+//                    data                : jengo_data
+//                }
+//            ]
+//        };
+//        var elimuChartData = {
+//            labels  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+//            datasets: [
+//                {
+//                    label               : 'Jengo Collections',
+//                    fillColor           : '#fff',
+//                    strokeColor         : 'rgba(60,141,188,0.8)',
+//                    pointColor          : '#3b8bba',
+//                    pointStrokeColor    : 'rgba(60,141,188,1)',
+//                    pointHighlightFill  : '#fff',
+//                    pointHighlightStroke: 'rgba(60,141,188,1)',
+//                    data                : jengo_data
+//                }
+//            ]
+//        };
+
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieChart       = new Chart(pieChartCanvas)
+        var PieData        = [
+            {
+                value    : {{ maudhurio.wanaume }},
+                color    : '#F39C12',
+                highlight: '#F39C12',
+                label    : 'Wanaume'
+            },
+            {
+                value    : {{ maudhurio.wanawake }},
+                color    : '#00C0EF',
+                highlight: '#00C0EF',
+                label    : 'Wanawake'
+            },
+            {
+                value    : {{ maudhurio.watoto }},
+                color    : '#00A65A',
+                highlight: '#00A65A',
+                label    : 'Watoto'
+            },
+        ]
+        var pieOptions     = {
+            segmentShowStroke    : true,
+            segmentStrokeColor   : '#fff',
+            segmentStrokeWidth   : 2,
+            percentageInnerCutout: 5,
+            animationSteps       : 100,
+            animationEasing      : 'easeOutBounce',
+            animateRotate        : true,
+            animateScale         : false,
+            responsive           : true,
+            maintainAspectRatio  : true,
+        };
+        pieChart.Doughnut(PieData, pieOptions)
+
+        var barChartCanvas    = $('#jengobarChart').get(0).getContext('2d');
+        var barChart          = new Chart(barChartCanvas);
+        var barChartData      = jengoChartData;
+//        var options = {
+//            scales: {
+//                xAxes: [{
+//                    barPercentage: 0.5,
+//                    barThickness: 6,
+//                    maxBarThickness: 8,
+//                    minBarLength: 2,
+//                    gridLines: {
+//                        offsetGridLines: true
+//                    }
+//                }]
+//            }
+//        };
+        var barChartOptions   = {
+            scaleBeginAtZero        : true,
+            scaleShowGridLines      : true,
+//            scaleGridLineColor      : 'rgba(0,0,0,.05)',
+            scaleGridLineWidth      : 1,
+            scaleShowHorizontalLines: true,
+            scaleShowVerticalLines  : true,
+            barShowStroke           : true,
+            barStrokeWidth          : 1,
+            barValueSpacing         : 5,
+            barDatasetSpacing       : 1,
+            responsive              : true,
+            maintainAspectRatio     : true
+        };
+
+        barChartOptions.datasetFill = true
+        barChart.Bar(barChartData, barChartOptions);
+
+    });
+</script>
+
+{{> sysAdminFooter }}

@@ -1,0 +1,95 @@
+<body class="hold-transition login-page">
+<div class="login-box1">
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <!--<p class="login-box-msg">Sign in to start your session</p>-->
+
+        {{#if messages.success }}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-check"></i>{{ messages.success }}
+            </div>
+
+        {{/if}}
+        {{#if messages.error }}
+            <div class="alert alert-error">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fa fa-close"></i> {{ messages.error }}
+            </div>
+        {{/if}}
+        <div class="login-logo" style="align-content: center; height: 234px;" align="center" >
+            <img src="/images/logo.jpg"  class="img-responsive" style="    margin-left: 34%;height: 105%;"/>
+        </div>
+
+        <form action="/register" method="post" onsubmit="return checkForm(this);">
+            <div class="form-group">
+                <input type="text" id="username" required name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" required name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="mobile_number" required id="mobile_number" name="mobile_number" class="form-control" placeholder="Mobile Number">
+            </div>
+            <div class="form-group">
+                <textarea id="company_details" required rows="3" name="cmpany_details" class="form-control" rows="3" placeholder="Company Details"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" title="Password must contain at least 6 characters, including UPPER/lowercase and numbers" type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd1" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');if(this.checkValidity()) form.pwd2.pattern = RegExp.escape(this.value);">
+            </div>
+            <div class="form-group">
+                <input class="form-control" title="Please enter the same Password as above" type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd2" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
+            </div>
+            <!--<div class="form-group">
+                <input type="text" id="password" required name="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input type="text" id="conform_password" required name="conform_password" class="form-control" placeholder="Conform Password">
+            </div>-->
+            <div class="row">
+               <!-- <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <a href="/register">I forgot my password</a><br>
+                        </label>
+                    </div>
+                </div>-->
+                <!-- /.col -->
+                <div class="col-xs-12" align="center">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Log me in</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script type="application/javascript">
+    jQuery(document).ready(function() {
+        window.setTimeout("fadeMyDiv();", 3000); //call fade in 3 seconds
+    });
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+    function fadeMyDiv() {
+        jQuery(".alert-success").fadeOut('slow');
+        jQuery(".alert-error").fadeOut('slow');
+        jQuery(".alert-info").fadeOut('slow');
+    }
+</script>
+
+
+</body>

@@ -1,0 +1,309 @@
+{{> header }}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Booking Amount
+                <small>New Coupon Listing</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">new Booking Amount</li>
+            </ol>
+            {{#if messages.success }}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-check"></i>{{ messages.success }}
+                </div>
+
+            {{/if}}
+            {{#if messages.error }}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-close"></i> {{ messages.error }}
+                </div>
+            {{/if}}
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box  box-danger">
+                        <div class="box-header">
+                            <h3 class="box-title"></h3>
+                            {{#if arraysize}}
+                                <span class="pull-right"><button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#handover"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Booking Amount</button> </span>
+                            {{/if}}
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="5">S/N</th>
+                                    <th>Added By</th>
+                                    <th>Amount</th>
+                                    <th>Cylinder Weight (kg)</th>
+                                    <th>Status</th>
+                                    <th  width="90">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each bookingAmountList}}
+                                   <tr>
+                                       <td>{{math @index "+" 1}}</td>
+                                       <td>{{ insertby.username }}</td>
+                                       <td>{{ amount }}</td>
+                                       <td>{{ cylinderWeight }}</td>
+                                       <td style="text-align: right;font-weight: bold">
+                                           {{#compare status  1 operator="=="}}
+                                               <span class="label label-success label-small">Active</span>
+                                           {{ else }}
+                                               <span class="label label-warning">Not Active</span>
+                                           {{/compare}}
+                                       </td>
+                                       <td>
+                                           <div class="btn-group">
+                                               <!--<a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>-->
+                                               <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editCategory"  onclick="editSubAdmin('{{ _id }}')"><i class="fa fa-pencil"></i></button>
+                                               <!--<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" onclick="DeleteCoupon('{{ coupon_name  }}','{{ _id }}')" data-target="#CategoryDelete"><i class="fa fa-trash"></i></button>-->
+
+                                           </div>
+                                       </td>
+                                   </tr>
+                               {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </section>
+        <div class="modal fade" id="handover">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                   <form method="post" action="/addBookingAmount" autocomplete="off">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">New Booking Amount</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-body" id="TabletoAdd">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Booking Amount</label>
+                                        <input type="text" cols="1" required rows="1" class="form-control" name="bookingAmount"  placeholder="Booking Amount">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Status</label>
+                                    <select class="form-control" name="status">
+                                        <option value="0">Active</option>
+                                        <option value="1">Inactive</option>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <!--<button class="btn btn-info" id="addRow" type="button">Add</button>-->
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="additions" id="additions" style="display: none">
+            <div class="row">
+                <div class="col-sm-2">
+                    <select class="form-control" required name="categoryId[]" onchange="">
+                        <option value=""> -- Chagua Aina --</option>
+                        {{#each cat}}
+                            <option value="{{ _id }}">{{ name }}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <textarea type="text" cols="1" required rows="1" class="form-control" name="tangazo[]"  placeholder="Tangazo"></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control date" name="tarehe[]" placeholder="Tarehe">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control" value="" name="muhusika[]"  placeholder="Muhusika ">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                        <div class="input-group">
+                            <select class="form-control"  name="priority[]" onchange="">
+                                <option value="0">Kawaida</option>
+                                <option value="1">Sana</option>
+                                <option value="2">Sana Mno</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" id="removerow"><i class="fa fa-close"></i></button>
+                            </span>
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.content -->
+    </div>
+
+<div class="modal fade" id="CategoryDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form" action="/sysadmin/deleteCoupon" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Delete Coupon <span id="deleteCouponName"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        You're sure you want to delete <b id="couponName"></b>
+                        <input type="hidden" id="couponId" name="couponId">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Remove</button>
+                    <button type="submit" class="btn btn-primary">YES</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="editCategory">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form autocomplete="off" action="/editBookingAmount" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit Booking Amount</h4>
+                </div>
+                <div class="modal-body">
+                        <div class="box-body" id="TabletoAdd">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Booking Amount</label>
+                                        <input type="text" cols="1" required rows="1" class="form-control" name="bookingAmount" id="bookingAmount"  placeholder="Booking Amount">
+                                        <input type="hidden" id="id" name="id">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Select Cylinder Weight (kg)</label>
+                                        <select class="form-control" name="cylinderWeight" required>
+                                            <option value="">Select Cylinder Weight</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Status</label>
+                                        <select class="form-control" name="status">
+                                            <option value="0">Active</option>
+                                            <option value="1">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="application/javascript">
+    $(document).ready(function(){
+        $('.mobile_number').keyup(function (event) {
+            // skip for arrow keys
+            if (event.which >= 37 && event.which <= 40) return;
+            // format number
+            $(this).val(function (index, value) {
+                return value.replace(/\D/g, "");
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#TabletoAdd").on('click','#removerow',function(){
+            $(this).parent().parent().parent().parent().remove();
+        });
+        $("#addRow").click(function(){
+            var response = $('#additions').html();
+            $('#TabletoAdd').append(response).slideDown('slow');
+            $(".date").datepicker({
+                maxDate:0,
+                dateFormat: "yy-mm-dd",
+            }).datepicker("setDate", new Date());
+        });
+        $('.sidebar-menu').tree()
+
+        $(".date").datepicker({
+            maxDate:0,
+            dateFormat: "yy-mm-dd",
+        }).datepicker("setDate", new Date());
+    });
+
+    function editSubAdmin(argument) {
+       // alert(argument)
+        $.ajax({
+            url: "/bookingAmountAjax",
+            data : { bookingAmountid : argument },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#id").val(response._id);
+                $("#bookingAmount").val(response.amount);
+                $("#status").val(response.status);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#id").val(" ");
+                $("#bookingAmount").val(" ");
+                $("#status").val(" ");                                                                                     
+            }
+        });
+    }
+
+    function DeleteCoupon(argument,argument2){
+        jQuery("#deleteCouponName").html(argument);
+        jQuery("#couponName").html(argument);
+        jQuery("#couponId").val(argument2);
+    }
+</script>
+{{> footer }}

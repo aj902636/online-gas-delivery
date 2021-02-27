@@ -1,0 +1,188 @@
+{{> header }}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                AINA ZA MATANGAZO
+                <small>Aina za matangazo</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Jengo</li>
+            </ol>
+            {{#if messages.success }}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-check"></i>{{ messages.success }}
+                </div>
+
+            {{/if}}
+            {{#if messages.error }}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="icon fa fa-close"></i> {{ messages.error }}
+                </div>
+            {{/if}}
+        </section>
+                <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="box box-danger">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%">S/N</th>
+                                    <th>Jina</th>
+                                    <th>Descriptions</th>
+                                    <th>Created At</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each categories}}
+                                    <tr>
+                                        <td>{{math @index "+" 1}}</td>
+                                        <td>{{ name }}</td>
+                                        <td>{{ descriptions }}</td>
+                                        <td>{{formatDate createdAt "DD-MM-YYYY HH:mm"}}</td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editCategory"  onclick="editUser('{{ _id }}')"><i class="fa fa-pencil"></i>Edit</button>
+                                                <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" onclick="DeleteCategory('{{ name }}','{{ _id }}')" data-target="#CategoryDelete"><i class="fa fa-trash"></i> delete </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Aina za Matangazo</h3>
+                         <span class="box-title pull-right">
+                        </span>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                       <form action="/categories" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="departmentname">Aina ya tangazo</label>
+                                <input type="text" required class="form-control" name="project_name" id="projectname" placeholder="Aina ya tangazo">
+                            </div>
+                            <div class="form-group">
+                                <label for="descriptions">Description</label>
+                                <input type="text" class="form-control" id="descriptions" name="descriptions" placeholder="Description">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Save</button>
+                        </div>
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+<div class="modal fade" id="editCategory">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form autocomplete="off" action="/editCategory" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Aina ya Tangazo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="departmentname">Aina ya tangazo</label>
+                            <input type="text" required class="form-control" name="project_name" id="editprojectname" placeholder="Aina ya tangazo">
+                            <input type="hidden" required class="form-control" name="editId" id="editcategory" placeholder="  ">
+                        </div>
+                        <div class="form-group">
+                            <label for="descriptions">Description</label>
+                            <input type="text" class="form-control" id="editdescriptions" name="descriptions" placeholder="Description">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="CategoryDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form" action="/deleteCategory" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ondoa <span id="jinalamuumini"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Unauhakika Unataka kumfuta <b id="nameyaMuumini"></b>
+                        <input type="hidden" id="muuminiId" name="muuminiId">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ONDOA</button>
+                    <button type="submit" class="btn btn-primary">NDIYO</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="application/javascript">
+    function editUser(argument) {
+        $.ajax({
+            url: "/sysadmin/ajaxEditUser",
+            data : { categoryId : argument },
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                $("#editcategory").val(response._id);
+                $("#editprojectname").val(response.name);
+                $("#editdescriptions").val(response.descriptions);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $("#editcategory").val("");
+                $("#editprojectname").val("");
+                $("#editdescriptions").val("");
+            }
+        });
+    }
+
+    function DeleteCategory(argument,argument2){
+        jQuery("#jinalamuumini").html(argument);
+        jQuery("#nameyaMuumini").html(argument);
+        jQuery("#muuminiId").val(argument2);
+    }
+</script>
+{{> footer }}
