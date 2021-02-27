@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"cardnumber":{"$numberInt":"1"}},"name":"cardnumber_1","background":true}],"uuid":"23dadbe8e09f4c0b8ff1e1f72879e3dd","collectionName":"wauminis"}

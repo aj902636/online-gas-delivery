@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"serialNo":{"$numberInt":"1"}},"name":"serialNo_1","background":true}],"uuid":"553800d722114100abc82d71fe0f80f1","collectionName":"jengoreports"}

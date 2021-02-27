@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"gasdelivery.systemmodules"},{"v":2,"unique":true,"key":{"role":1},"name":"role_1","ns":"gasdelivery.systemmodules","background":true}],"uuid":"6a6095d4158e4d3895c76c1ab000f697"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"role":{"$numberInt":"1"}},"name":"role_1","background":true}],"uuid":"b5f2ec98794b4263b2f2d467edc493fd","collectionName":"systemmodules"}
